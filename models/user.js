@@ -1,7 +1,9 @@
-const { hasMany, FlintModel } = require('../lib/flintModeling');
+const { belongsTo, hasMany, FlintModel } = require('../lib/flintModeling');
 
 const user = new FlintModel('user', {
-  budgets: hasMany()
+  // unallocated: belongsTo('budget'),
+  budgets: hasMany(),
+  expenses: hasMany()
 });
 
 module.exports = user;
