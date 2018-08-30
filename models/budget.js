@@ -1,8 +1,6 @@
-const bookshelf = require('../config/bookshelf');
-
 const { FlintModel } = require('../lib/flintModeling');
 
-const Budget = new FlintModel('budget', {
+const budget = new FlintModel('budget', {
 });
 
-module.exports = Budget;
+module.exports = budget;
