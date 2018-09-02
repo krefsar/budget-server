@@ -1,8 +1,7 @@
-const { belongsTo, hasMany, FlintModel } = require('../lib/flintModeling');
+const bookshelf = require('../lib/bookshelf');
 
-const transaction = new FlintModel('transaction', {
-  budget: belongsTo(),
-  expenses: hasMany()
+const transaction = bookshelf.Model.extend({
+  tableName: 'transactions'
 });
 
 module.exports = transaction;

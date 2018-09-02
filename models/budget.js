@@ -1,9 +1,12 @@
-const { FlintModel, hasMany } = require('../lib/flintModeling');
+const bookshelf = require('../lib/bookshelf');
+const transaction = require('./transaction');
 
-const budget = new FlintModel('budget', {
-  transactions: hasMany('transaction', {
-    joinTable: true
-  })
+const budget = bookshelf.Model.extend({
+  tableName: 'budgets',
+
+  transactions: function() {
+    return this.belongsToMany(transaction);
+  }
 });
 
 module.exports = budget;

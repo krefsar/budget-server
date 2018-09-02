@@ -1,10 +1,14 @@
 const express = require('express');
-const config = require('./config');
-const FlintRouter = require('../lib/flintRouter')
 
 const router = express.Router();
-const flintRouter = new FlintRouter(router);
 
-flintRouter.setupRoutes(config);
+router.get('/:modelType', require('./getAll'));
+router.get('/:modelType/:id', require('./getSingle'));
 
-module.exports = flintRouter.getRouter();
+router.delete('/:modelType/:id', require('./deleteSingle'));
+
+router.post('/:modelType', require('./createSingle'));
+
+router.patch('/:modelType/:id', require('./updateSingle'));
+
+module.exports = router;
