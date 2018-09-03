@@ -4,15 +4,14 @@ const router = express.Router();
 const users = require('./users');
 const unallocateds = require('./unallocateds');
 // const expenses = require('./expenses');
-// const budgets = require('./budgets');
+const budgets = require('./budgets');
 const transactions = require('./transactions');
 
 router.get('/users/:id', users.findOne);
 // router.patch('/users/:id', users.updateOne);
 
-// router.get('/budgets', budgets.findAll);
-// router.get('/budgets/:id', budgets.findOne);
-// router.patch('/budgets/:id', budgets.updateOne);
+router.get('/budgets/:id', budgets.findOne);
+router.patch('/budgets/:id', budgets.updateOne);
 // router.delete('/budgets/:id', budgets.deleteOne);
 // router.post('/budgets', budgets.createOne);
 
