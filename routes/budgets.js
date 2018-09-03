@@ -47,9 +47,37 @@ const budgetModule = (function() {
       });
   }
 
+  const createOne = (req, res) => {
+    const { data: { attributes, relationships } } = req.body;
+
+    const { user } = relationships;
+
+    budgetModel
+      .forge()
+      .save({ ...attributes, user_id: user.data.id })
+      .then(newModel => {
+        const formatted = mapper.map(newModel, 'budgets', { enableLinks: false });
+
+        res.status(201).send(formatted);
+      });
+  }
+
+  const deleteOne = (req, res) => {
+    const { id } = req.params;
+
+    budgetModel
+      .forge({ id })
+      .destroy()
+      .then(() => {
+        res.status(204).send({});
+      });
+  }
+
   return {
     findOne,
-    updateOne
+    updateOne,
+    createOne,
+    deleteOne
   }
 })();
 

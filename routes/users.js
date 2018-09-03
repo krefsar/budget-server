@@ -1,5 +1,6 @@
 const Mapper = require('jsonapi-mapper');
 const userModel = require('../models/user');
+const budgetModel = require('../models/budget');
 
 const userModule = (function() {
   const mapper = new Mapper.Bookshelf();
@@ -20,7 +21,19 @@ const userModule = (function() {
       });
   };
 
-  const updateOne = () => {};
+  const updateOne = (req, res) => {
+    const { id } = req.params;
+    const { data: { attributes } } = req.body;
+
+    userModel
+      .forge({ id })
+      .save({ ...attributes })
+      .then(updatedModel => {
+        const formatted = mapper.map(updatedModel, 'users', { enableLinks: false });
+
+        res.status(200).send(formatted);
+      });
+  };
 
   return {
     findOne,

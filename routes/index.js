@@ -8,12 +8,12 @@ const budgets = require('./budgets');
 const transactions = require('./transactions');
 
 router.get('/users/:id', users.findOne);
-// router.patch('/users/:id', users.updateOne);
+router.patch('/users/:id', users.updateOne);
 
 router.get('/budgets/:id', budgets.findOne);
 router.patch('/budgets/:id', budgets.updateOne);
-// router.delete('/budgets/:id', budgets.deleteOne);
-// router.post('/budgets', budgets.createOne);
+router.delete('/budgets/:id', budgets.deleteOne);
+router.post('/budgets', budgets.createOne);
 
 router.post('/transactions', transactions.createOne);
 
