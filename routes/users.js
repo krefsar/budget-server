@@ -7,13 +7,16 @@ const userModule = (function() {
 
   const findOne = (req, res) => {
     const { id } = req.params;
-    const { include = '' } = req.query;
+    const { include } = req.query;
+
+    const fetchOptions = {};
+    if (include) {
+      fetchOptions.withRelated = include.split(',');
+    }
 
     userModel
       .forge({ id })
-      .fetch({
-        withRelated: include.split(',')
-      })
+      .fetch(fetchOptions)
       .then(fetchedModel => {
         const formatted = mapper.map(fetchedModel, 'users', { enableLinks: false });
 

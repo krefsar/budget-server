@@ -5,13 +5,16 @@ const expenseModule = (function() {
   const mapper = new Mapper.Bookshelf();
 
   const findAll = (req, res) => {
-    const { include = ''} = req.query;
+    const { include } = req.query;
+
+    const fetchOptions = {};
+    if (include) {
+      fetchOptions.withRelated = include.split(',');
+    }
 
     expenseModel
       .forge()
-      .fetchAll({
-        withRelated: include.split(',')
-      })
+      .fetchAll(fetchOptions)
       .then(allModels => {
         const formatted = mapper.map(fetchedModel, 'expenses', { enableLinks: false });
         res.status(200).send(formatted);
