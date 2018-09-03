@@ -5,7 +5,7 @@ const expenseModule = (function() {
   const mapper = new Mapper.Bookshelf();
 
   const findAll = (req, res) => {
-    const { include } = req.query;
+    const { include = ''} = req.query;
 
     expenseModel
       .forge()

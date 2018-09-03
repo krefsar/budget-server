@@ -6,7 +6,7 @@ const unallocatedModule = (function() {
 
   const findOne = (req, res) => {
     const { id } = req.params;
-    const { include } = req.query;
+    const { include = '' } = req.query;
 
     unallocatedModel
       .forge({ id })
