@@ -1,4 +1,5 @@
 const express = require('express');
+const validateJWT = require('express-jwt');
 
 const router = express.Router();
 const users = require('./users');

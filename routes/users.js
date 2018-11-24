@@ -1,6 +1,5 @@
 const Mapper = require('jsonapi-mapper');
 const userModel = require('../models/user');
-const budgetModel = require('../models/budget');
 
 const userModule = (function() {
   const mapper = new Mapper.Bookshelf();
